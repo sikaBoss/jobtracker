@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="#">JOB<span>TRACKER</span></a>
+        <nav class="navigation" id="site-navigation">
+            <a href="index.html"><button class="nav-btn active" onclick="showPage('home')">Home</button></a>
+            <a href="jobs.html"><button class="nav-btn" onclick="showPage('jobs')">Jobs</button></a>
+            <a href="matching.html"><button class="nav-btn" onclick="showPage('products')">Matching</button></a>
+            <a href="account.html"><button class="nav-btn" onclick="showPage('account')">Account</button></a>
+        </nav>
+        <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="login-form">
+        <h2 class="login-title">Login</h2>
+        <form method="post">
+            <label for="username" class="name-label">Username:</label>
+            <input type="text" id="username" name="username" required class="form-input" placeholder="Username"><br><br>
+            <label for="password" class="name-label">Password:</label>
+            <div class="password-field">
+                <input type="password" id="password" name="password" required class="form-input" placeholder="Password">
+                <button type="button" class="password-toggle" aria-label="Show password" aria-pressed="false" data-password-toggle="password">
+                    <svg class="eye-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            </div>
+            <div class="login-actions">
+                <input type="submit" value="Login" class="submit-btn">
+                <a href="account.html" class="submit-btn">Register here</a>
+            </div>
+        </form> 
+    </div>
+    <script>
+        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.passwordToggle);
+                const isVisible = input.type === 'text';
+                input.type = isVisible ? 'password' : 'text';
+                button.setAttribute('aria-pressed', String(!isVisible));
+                button.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
+                button.querySelector('.eye-icon').hidden = !isVisible;
+                button.querySelector('.eye-off-icon').hidden = isVisible;
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

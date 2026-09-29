@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="#">JOB<span>TRACKER</span></a>
+        <nav class="navigation" id="site-navigation">
+            <a href="index.html"><button class="nav-btn active" onclick="showPage('home')">Home</button></a>
+            <a href="jobs.html"><button class="nav-btn" onclick="showPage('jobs')">Jobs</button></a>
+            <a href="matching.html"><button class="nav-btn" onclick="showPage('products')">Matching</button></a>
+            <a href="account.html"><button class="nav-btn" onclick="showPage('account')">Account</button></a>
+        </nav>
+        <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="login-form">
+    <div class="login-content">
+        <h2 class="big-content">Account</h2>
+        <p class="small-content">
+            This is the account page. <br>
+            Login to your account to access your job applications, saved jobs, and personalized recommendations. If you don't have an account yet, please sign up to get started. <br>
+        </p>
+        <a href="login.html"><button class="account-login-btn">Login</button></a>
+    </div>
+    <div class="buttons">
+        <a href="Graduate.html"><button class="account-btn">Create a Graduate Account</button></a>        
+        <a href="employer.html"><button class="account-btn">Create an Employer Account</button></a>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

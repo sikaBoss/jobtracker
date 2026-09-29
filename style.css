@@ -1,483 +1,504 @@
+/* Job Tracker - responsive frontend */
+
+:root {
+    --blue: #1565d8;
+    --blue-dark: #0d47a1;
+    --blue-light: #eaf2ff;
+    --white: #ffffff;
+    --text: #1f2937;
+    --muted: #64748b;
+    --border: #dbe3ef;
+    --page: #f7f9fc;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #000000;
     min-height: 100vh;
-    color: #fff;
+    background: var(--page);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Header */
 header {
     width: 100%;
-    min-height: 80px;
-    background: #000000;
+    min-height: 72px;
+    padding: 0 clamp(16px, 5vw, 72px);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 6%;
+    gap: 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
-a{
+
+header > a {
+    flex-shrink: 0;
+    color: var(--blue);
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
     font-weight: 900;
-    font-size: 1rem;
-    color: #fff;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
 }
-header a {
-    font-size: 1.8rem;
+
+header > a span {
+    color: var(--blue-dark);
+    padding-left: 3px;
 }
-span{
-    color: chocolate;
-    padding: 3px;
-}
+
 .navigation {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: flex-end;
+    gap: 5px;
 }
+
+.navigation > a {
+    display: block;
+}
+
 .nav-btn {
-    border: none;
+    min-height: 42px;
+    padding: 9px 15px;
+    border: 0;
+    border-radius: 8px;
     background: transparent;
-    padding: 10px 16px;
-    border-radius: 7px;
-    color: #fff;
-    font-size: 15px;
-    transition: 0.2s;
+    color: var(--text);
+    font-size: .95rem;
+    font-weight: 700;
+    transition: background .2s, color .2s;
 }
-.nav-btn:hover {
-    background: chocolate;
-    color: #ffffff;
-}
+
+.nav-btn:hover,
+.nav-btn:focus-visible,
 .nav-btn.active {
-    background: chocolate  ;
-    color: white;
+    background: var(--blue);
+    color: var(--white);
 }
+
 .menu-btn {
     display: none;
-    border: none;
-    background: transparent;
-    font-size: 27px;
-}
-@media (max-width: 760px) {
-    * {
-        max-width: 100%;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    header {
-        padding: 12px 4%;
-        min-height: 70px;
-        width: 100%;
-    }
-
-    header a {
-        font-size: 1.2rem;
-    }
-
-    .navigation {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-        padding: 14px 5%;
-        background: rgba(0, 0, 0, 0.98);
-        border-top: 1px solid #333;
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.35);
-    }
-
-    .navigation.is-open {
-        display: flex;
-    }
-
-    .navigation > a {
-        display: block;
-        width: 100%;
-    }
-
-    .navigation .nav-btn {
-        width: 100%;
-        text-align: left;
-        font-size: 0.95rem;
-        padding: 12px 14px;
-    }
-
-    .menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        cursor: pointer;
-        font-size: 1.6rem;
-    }
-
-    .Home {
-        padding: 24px 4%;
-    }
-
-    .body {
-        width: 100%;
-        max-width: 100%;
-        padding: 18px 14px;
-        min-height: auto;
-        margin: 0 auto 20px;
-    }
-
-    .content {
-        width: 100%;
-        max-width: 100%;
-        padding: 18px 14px;
-        background: rgba(0, 0, 0, 0.88);
-    }
-
-    .small {
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-    }
-
-    .big {
-        font-size: clamp(2.2rem, 10vw, 3.3rem);
-        line-height: 1.08;
-    }
-
-    .small-content {
-        font-size: 0.96rem;
-        line-height: 1.7;
-        padding-left: 0;
-    }
-
-    .account-btn,
-    .submit-btn,
-    .account-login-btn {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 14px 16px;
-        font-size: 0.95rem;
-    }
-
-    .display-jobs {
-        margin: 32px 0 20px;
-    }
-
-    .display-jobs h2 {
-        font-size: clamp(1.8rem, 7vw, 2.5rem);
-    }
-
-    .login-form,
-    .grad-acc {
-        width: 100%;
-        max-width: 100%;
-        margin-top: 40px;
-        padding: 22px 18px;
-    }
-
-    .login-title,
-    .grad-title,
-    .big-content {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-
-    .login-content,
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .buttons a,
-    .buttons .account-btn,
-    .login-actions a,
-    .login-actions .submit-btn {
-        width: 100%;
-    }
-
-    .name-label,
-    .account-type-option,
-    .form-input {
-        font-size: 0.95rem;
-    }
-
-    .account-type-options {
-        gap: 10px;
-    }
-
-    .login-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .login-actions .submit-btn {
-        width: 100%;
-    }
-
-    .password-field {
-        margin-bottom: 16px;
-    }
-
-    .form-input {
-        min-height: 48px;
-    }
-
-    .account-login-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-}
-.Home{
-    min-height: 75vh;
-    padding: 50px 6%;
-}
-.body{
-    min-height: 600px;
-    max-width: 90%;
-    margin: 0 auto 30px;
-    display: flex;
-    align-items: center;
-    padding: 60px;
-    border-radius: 20px;
-    background: linear-gradient(120deg, 
-    #000000,
-    #333, #555, #000000);
-}
-
-.content{
-    max-width: 90%;
-    background: #000000;
-    padding: 80px 100px;
-    border-radius: 20px;
-}
-.small{
-    color: chocolate;
-    font-weight: bold;
-    font-size: 16px;
-}
-.big{
-    color: #fff;
-    font-size: 60px;
-    font-weight: bold;
-}
-.big h1 span{
-    color: chocolate;
-}
-.small-content{
-    color: #666;
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    padding-left: 20px;
-}
-.account-btn{
-    background: chocolate;
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-}
-.display-jobs {
-    text-align: center;
-    margin: 60px 0 30px;
-}
-.display-jobs h2 {
-    color: #999;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-.display-jobs p {
-    color: #777;
-}
-.login-form{
-    max-width: 650px;
-    margin: 0 auto;
-    margin-top: 100px;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    background: #000000;
-    padding: 30px 50px;
-    padding-top: 30px;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-.login-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: chocolate;
-    font-size: 50px;
-    font-weight: bold;
-}
-.submit-btn {
-    background: chocolate;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.login-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.login-actions .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-}
-.account-type-options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 18px;
-    margin: 0 0 20px;
-    padding: 0;
+    width: 44px;
+    height: 44px;
     border: 0;
+    border-radius: 8px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 1.35rem;
 }
-.account-type-options legend {
-    flex-basis: 100%;
+
+/* Home */
+.Home {
+    width: 100%;
+    padding: clamp(24px, 6vw, 70px) 5%;
 }
-.account-type-option {
-    display: inline-flex;
+
+.body {
+    width: min(1180px, 100%);
+    min-height: 500px;
+    margin: 0 auto 30px;
+    padding: clamp(24px, 7vw, 70px);
+    display: flex;
     align-items: center;
-    gap: 7px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    white-space: nowrap;
-    cursor: pointer;
+    border-radius: 20px;
+    background: var(--blue);
 }
-.account-type-option input {
-    margin: 0;
-    accent-color: chocolate;
+
+.content {
+    width: min(760px, 100%);
+    padding: clamp(24px, 6vw, 60px);
+    border-radius: 16px;
+    background: var(--white);
 }
+
+.small {
+    color: var(--blue);
+    font-weight: 800;
+    font-size: clamp(.85rem, 2vw, 1rem);
+}
+
+.big {
+    margin: 8px 0 16px;
+    color: var(--blue-dark);
+    font-size: clamp(2.3rem, 7vw, 4.6rem);
+    line-height: 1.05;
+    font-weight: 900;
+}
+
+.big h1 span,
+.content span {
+    color: var(--blue);
+}
+
+.small-content {
+    max-width: 650px;
+    margin-bottom: 25px;
+    color: var(--muted);
+    font-size: clamp(.92rem, 1.5vw, 1rem);
+    line-height: 1.7;
+}
+
+.account-btn,
+.submit-btn,
+.account-login-btn {
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--blue);
+    color: var(--white);
+    font-weight: 700;
+    transition: background .2s, transform .2s;
+}
+
+.account-btn:hover,
+.submit-btn:hover,
+.account-login-btn:hover {
+    background: var(--blue-dark);
+}
+
+.account-btn:active,
+.submit-btn:active,
+.account-login-btn:active {
+    transform: translateY(1px);
+}
+
+.display-jobs {
+    width: min(1100px, 100%);
+    margin: 50px auto 30px;
+    text-align: center;
+}
+
+.display-jobs h2 {
+    margin-bottom: 8px;
+    color: var(--blue-dark);
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+}
+
+.display-jobs p {
+    color: var(--muted);
+}
+
+/* Forms */
+.login-form,
+.grad-acc {
+    width: min(650px, calc(100% - 32px));
+    margin: clamp(35px, 8vw, 90px) auto 30px;
+    padding: clamp(22px, 5vw, 42px);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(21, 101, 216, .08);
+}
+
+.login-title,
+.grad-title,
+.big-content {
+    margin-bottom: 22px;
+    color: var(--blue-dark);
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    line-height: 1.1;
+    text-align: center;
+    font-weight: 900;
+}
+
+.name-label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--text);
+    font-size: .95rem;
+    font-weight: 700;
+}
+
 .form-input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 15px;
-    background: #333;
-    color: #fff;
-    font-size: 16px;
+    min-height: 46px;
+    margin-bottom: 18px;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: var(--white);
+    color: var(--text);
+    font-size: 1rem;
 }
+
+.form-input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(21, 101, 216, .12);
+}
+
 .password-field {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
+
 .password-field .form-input {
-    padding-right: 44px;
     margin-bottom: 0;
+    padding-right: 48px;
 }
+
 .password-toggle {
     position: absolute;
     top: 50%;
     right: 10px;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
     transform: translateY(-50%);
-    display: grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    padding: 4px;
     border: 0;
     background: transparent;
-    color: #bbb;
-    cursor: pointer;
+    color: var(--blue);
 }
-.password-toggle:hover,
-.password-toggle:focus-visible {
-    color: #fff;
-}
-.password-toggle:focus-visible {
-    outline: 2px solid chocolate;
-    outline-offset: 2px;
-    border-radius: 4px;
-}
+
 .password-toggle svg {
-    width: 20px;
-    height: 20px;
+    width: 21px;
+    height: 21px;
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.8;
 }
-.name-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
+
+.login-actions,
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
 }
-.big-content {
-    color: #fff;
-    font-size: 50px;
-    font-weight: bold;
+
+.login-actions {
+    justify-content: center;
+}
+
+.login-actions .submit-btn,
+.login-actions a {
+    flex: 1 1 180px;
     text-align: center;
-    margin-bottom: 20px;
 }
-.account-login-btn{
-    background: chocolate;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
+
+.account-login-btn {
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 10px 239px;
-    margin: 5px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.grad-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: chocolate;
-    font-size: 50px;
-    font-weight: bold;
-}
-.grad-content {
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-.grad-acc {
-    max-width: 650px;
-    margin: 0 auto;
-    margin-top: 100px;
-    display: block;
-    align-items: center;
     justify-content: center;
-    background: #000000;
-    padding: 30px 50px;
-    padding-top: 30px;
-    border: 1px solid #333;
-    border-radius: 10px;
+}
+
+.buttons {
+    margin-top: 12px;
+}
+
+.buttons > a {
+    flex: 1 1 220px;
+}
+
+.buttons .account-btn {
+    width: 100%;
+}
+
+.grad-content {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+/* Keyboard focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(21, 101, 216, .25);
+    outline-offset: 2px;
+}
+
+/* Tablet */
+@media (max-width: 850px) {
+    header {
+        min-height: 68px;
+    }
+
+    .navigation {
+        gap: 2px;
+    }
+
+    .nav-btn {
+        padding-inline: 10px;
+        font-size: .9rem;
+    }
+
+    .body {
+        min-height: 430px;
+    }
+}
+
+/* Phone */
+@media (max-width: 700px) {
+    header {
+        min-height: 64px;
+        padding: 10px 16px;
+    }
+
+    header > a {
+        font-size: 1.15rem;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 10px 16px 14px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 22px rgba(15, 23, 42, .1);
+    }
+
+    .navigation.is-open {
+        display: flex;
+    }
+
+    .navigation > a,
+    .navigation .nav-btn {
+        width: 100%;
+    }
+
+    .nav-btn {
+        min-height: 44px;
+        text-align: left;
+        padding: 10px 13px;
+    }
+
+    .Home {
+        padding: 20px 14px;
+    }
+
+    .body {
+        min-height: auto;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .content {
+        padding: 25px 20px;
+        border-radius: 12px;
+    }
+
+    .big {
+        font-size: clamp(2.15rem, 12vw, 3.5rem);
+    }
+
+    .small-content {
+        padding-left: 0;
+    }
+
+    .account-btn {
+        width: 100%;
+        margin: 0;
+    }
+
+    .display-jobs {
+        margin-top: 35px;
+    }
+
+    .login-form,
+    .grad-acc {
+        width: calc(100% - 28px);
+        margin-top: 30px;
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+    .login-title,
+    .grad-title,
+    .big-content {
+        font-size: clamp(1.9rem, 10vw, 2.7rem);
+    }
+
+    .login-actions,
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .login-actions .submit-btn,
+    .login-actions a,
+    .buttons > a {
+        width: 100%;
+        flex: none;
+    }
+
+    .submit-btn,
+    .account-login-btn {
+        width: 100%;
+    }
+
+    .form-input {
+        min-height: 48px;
+        font-size: 16px; /* prevents mobile browser zoom */
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    header {
+        padding-inline: 12px;
+    }
+
+    .Home {
+        padding-inline: 10px;
+    }
+
+    .body {
+        padding: 8px;
+    }
+
+    .content {
+        padding: 22px 16px;
+    }
+
+    .login-form,
+    .grad-acc {
+        width: calc(100% - 20px);
+        padding-inline: 15px;
+    }
 }

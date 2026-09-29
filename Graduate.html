@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs</title>
+    <title>Job Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <a href="#">JOB<span>TRACKER</span></a>
+        <a href="index.html">JOB<span>TRACKER</span></a>
         <nav class="navigation" id="site-navigation">
-            <a href="index.html"><button class="nav-btn active" onclick="showPage('home')">Home</button></a>
-            <a href="jobs.html"><button class="nav-btn" onclick="showPage('jobs')">Jobs</button></a>
-            <a href="matching.html"><button class="nav-btn" onclick="showPage('products')">Matching</button></a>
-            <a href="account.html"><button class="nav-btn" onclick="showPage('account')">Account</button></a>
+            <a href="index.html"><button class="nav-btn active" >Home</button></a>
+            <a href="jobs.html"><button class="nav-btn" >Jobs</button></a>
+            <a href="matching.html"><button class="nav-btn" >Matching</button></a>
+            <a href="account.html"><button class="nav-btn" >Account</button></a>
         </nav>
         <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false" onclick="toggleMenu()">☰</button>
     </header>
     <div class="grad-acc">
         <h1 class="grad-title">Graduate Account</h1>
         <form method="post">
-            <label for="name" class="name-label">Firstname:</label>
-            <input type="text" id="name" name="name" required class="form-input" placeholder="Firstname"><br>
-            <label for="name" class="name-label">Surname:</label>
-            <input type="text" id="name" name="name" required class="form-input" placeholder="Surname"><br>
-            <label for="name" class="name-label">Other-names:</label>
-            <input type="text" id="name" name="name" required class="form-input" placeholder="Othername"><br>
+            <label for="firstname" class="name-label">Firstname:</label>
+            <input type="text" id="firstname" name="firstname" required class="form-input" placeholder="Firstname"><br>
+            <label for="surname" class="name-label">Surname:</label>
+            <input type="text" id="surname" name="surname" required class="form-input" placeholder="Surname"><br>
+            <label for="other-names" class="name-label">Other-names:</label>
+            <input type="text" id="other-names" name="other-names" required class="form-input" placeholder="Othername"><br>
             <label for="email" class="name-label">Email:</label>
             <input type="email" id="email" name="email" required class="form-input" placeholder="Email"><br>
             <label for="password" class="name-label">Password:</label>

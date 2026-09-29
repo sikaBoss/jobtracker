@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs</title>
+    <title>Job Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <a href="#">JOB<span>TRACKER</span></a>
+        <a href="index.html">JOB<span>TRACKER</span></a>
         <nav class="navigation" id="site-navigation">
-            <a href="index.html"><button class="nav-btn active" onclick="showPage('home')">Home</button></a>
-            <a href="jobs.html"><button class="nav-btn" onclick="showPage('jobs')">Jobs</button></a>
-            <a href="matching.html"><button class="nav-btn" onclick="showPage('products')">Matching</button></a>
-            <a href="account.html"><button class="nav-btn" onclick="showPage('account')">Account</button></a>
+            <a href="index.html"><button class="nav-btn active" >Home</button></a>
+            <a href="jobs.html"><button class="nav-btn" >Jobs</button></a>
+            <a href="matching.html"><button class="nav-btn" >Matching</button></a>
+            <a href="account.html"><button class="nav-btn" >Account</button></a>
         </nav>
         <button class="menu-btn" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false" onclick="toggleMenu()">☰</button>
     </header>
@@ -35,19 +35,6 @@
             </div>
         </form> 
     </div>
-    <script>
-        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
-            button.addEventListener('click', () => {
-                const input = document.getElementById(button.dataset.passwordToggle);
-                const isVisible = input.type === 'text';
-                input.type = isVisible ? 'password' : 'text';
-                button.setAttribute('aria-pressed', String(!isVisible));
-                button.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
-                button.querySelector('.eye-icon').hidden = !isVisible;
-                button.querySelector('.eye-off-icon').hidden = isVisible;
-            });
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

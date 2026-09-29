@@ -1,37 +1,58 @@
 function showPage(pageName) {
-	const buttons = document.querySelectorAll('.nav-btn');
-
-	buttons.forEach((button) => {
-		const buttonName = button.textContent.trim().toLowerCase();
-		const isActive = buttonName.includes(pageName.toLowerCase());
-		button.classList.toggle('active', isActive);
-	});
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach((button) => {
+        const buttonName = button.textContent.trim().toLowerCase();
+        button.classList.toggle('active', buttonName.includes(pageName.toLowerCase()));
+    });
 }
 
 function toggleMenu() {
-	const navigation = document.querySelector('.navigation');
-	const menuButton = document.querySelector('.menu-btn');
+    const navigation = document.querySelector('.navigation');
+    const menuButton = document.querySelector('.menu-btn');
+    if (!navigation || !menuButton) return;
+    const isOpen = navigation.classList.toggle('is-open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+}
 
-	if (!navigation || !menuButton) {
-		return;
-	}
-
-	const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-	navigation.classList.toggle('is-open', !isExpanded);
-	menuButton.setAttribute('aria-expanded', String(!isExpanded));
-	menuButton.setAttribute('aria-label', isExpanded ? 'Open navigation' : 'Close navigation');
+function closeMenu() {
+    const navigation = document.querySelector('.navigation');
+    const menuButton = document.querySelector('.menu-btn');
+    if (!navigation || !menuButton) return;
+    navigation.classList.remove('is-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Open navigation');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	const pageMap = {
-		'index.html': 'home',
-		'jobs.html': 'jobs',
-		'matching.html': 'matching',
-		'account.html': 'account',
-		'Graduate.html': 'graduate',
-		'Employer.html': 'employer'
-	};
+    const pageMap = {
+        'index.html': 'home',
+        'jobs.html': 'jobs',
+        'matching.html': 'matching',
+        'account.html': 'account',
+        'Graduate.html': 'graduate',
+        'Employer.html': 'employer',
+        'login.html': 'account'
+    };
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    showPage(pageMap[currentPage] || 'home');
 
-	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-	showPage(pageMap[currentPage] || 'home');
+    document.querySelectorAll('.navigation a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const input = document.getElementById(button.dataset.passwordToggle);
+            if (!input) return;
+            const visible = input.type === 'text';
+            input.type = visible ? 'password' : 'text';
+            button.setAttribute('aria-pressed', String(!visible));
+            button.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
+        });
+    });
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 760) closeMenu();
 });

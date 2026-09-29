@@ -1,576 +1,99 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+* { margin:0; padding:0; box-sizing:border-box; text-decoration:none; }
+html { scroll-behavior:smooth; }
+body { font-family:Arial, Helvetica, sans-serif; background:#000; min-height:100vh; color:#fff; line-height:1.6; overflow-x:hidden; }
+img, svg { max-width:100%; }
+button, input { font:inherit; }
+header { width:100%; min-height:80px; background:#000; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 clamp(20px,6vw,80px); position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+a { font-weight:900; font-size:1rem; color:#fff; letter-spacing:1px; }
+header > a { font-size:1.8rem; white-space:nowrap; flex-shrink:0; }
+span { color:chocolate; padding:3px; }
+.navigation { display:flex; align-items:center; justify-content:flex-end; gap:8px; }
+.navigation > a { display:block; }
+.nav-btn { border:none; background:transparent; padding:10px 16px; border-radius:7px; color:#fff; font-size:15px; transition:.2s; cursor:pointer; }
+.nav-btn:hover,.nav-btn.active { background:chocolate; color:#fff; }
+.menu-btn { display:none; border:none; background:transparent; font-size:27px; line-height:1; color:#fff; cursor:pointer; padding:8px; }
+.Home { min-height:75vh; padding:50px clamp(20px,6vw,80px); }
+.body { min-height:600px; width:100%; max-width:1400px; margin:0 auto 30px; display:flex; align-items:center; padding:clamp(25px,5vw,60px); border-radius:20px; background:linear-gradient(120deg,#000,#333,#555,#000); }
+.content { width:100%; max-width:1200px; background:#000; padding:clamp(35px,7vw,80px) clamp(25px,7vw,100px); border-radius:20px; }
+.small { color:chocolate; font-weight:bold; font-size:16px; }
+.big { color:#fff; font-size:clamp(42px,5vw,60px); font-weight:bold; line-height:1.1; overflow-wrap:anywhere; }
+.big span { color:chocolate; }
+.small-content { color:#666; font-size:15px; line-height:1.7; margin-bottom:30px; padding-left:20px; }
+.account-btn { background:chocolate; color:#fff; font-size:15px; font-weight:bold; padding:10px 20px; margin:10px; border-radius:10px; border:none; cursor:pointer; }
+.display-jobs { text-align:center; margin:60px auto 30px; max-width:1200px; }
+.display-jobs h2 { color:#999; font-size:32px; margin-bottom:10px; }
+.display-jobs p { color:#777; }
+.products-grid { width:100%; max-width:1200px; margin:0 auto; }
+.login-form,.grad-acc { width:min(100%,650px); margin:clamp(40px,10vh,100px) auto 30px; background:#000; padding:30px 50px; border:1px solid #333; border-radius:10px; }
+.login-title,.grad-title { text-align:center; margin-bottom:20px; color:chocolate; font-size:clamp(40px,6vw,50px); font-weight:bold; line-height:1.15; }
+.submit-btn { background:chocolate; color:#fff; font-size:16px; font-weight:bold; padding:10px 20px; margin:5px; border:none; border-radius:10px; cursor:pointer; }
+.login-actions { display:flex; justify-content:center; align-items:stretch; gap:10px; flex-wrap:wrap; }
+.login-actions .submit-btn { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; min-height:44px; }
+.account-type-options { display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin:0 0 20px; padding:0; border:0; }
+.account-type-options legend { flex-basis:100%; }
+.account-type-option { display:inline-flex; align-items:center; gap:7px; color:#fff; font-size:16px; font-weight:bold; white-space:nowrap; cursor:pointer; }
+.account-type-option input { margin:0; accent-color:chocolate; }
+.form-input { display:block; width:100%; min-width:0; min-height:46px; padding:10px 12px; margin-bottom:20px; border:none; border-radius:15px; background:#333; color:#fff; font-size:16px; }
+.form-input::placeholder { color:#aaa; }
+.form-input:focus { outline:2px solid chocolate; outline-offset:1px; }
+.password-field { position:relative; margin-bottom:20px; }
+.password-field .form-input { padding-right:48px; margin-bottom:0; }
+.password-toggle { position:absolute; top:50%; right:10px; transform:translateY(-50%); display:grid; place-items:center; width:32px; height:32px; padding:4px; border:0; background:transparent; color:#bbb; cursor:pointer; }
+.password-toggle:hover,.password-toggle:focus-visible { color:#fff; }
+.password-toggle:focus-visible { outline:2px solid chocolate; outline-offset:2px; border-radius:4px; }
+.password-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.name-label { display:block; margin-bottom:6px; color:#fff; font-size:16px; font-weight:bold; }
+.big-content { color:#fff; font-size:50px; font-weight:bold; text-align:center; margin-bottom:20px; line-height:1.15; }
+.account-login-btn { width:100%; background:chocolate; color:#fff; font-size:16px; font-weight:bold; display:flex; align-items:center; justify-content:center; min-height:46px; padding:10px 20px; margin:5px 0; border:none; border-radius:10px; cursor:pointer; }
+.grad-content { text-align:center; color:#fff; font-size:20px; margin-bottom:20px; }
+.buttons { display:flex; flex-direction:column; gap:4px; }
+.buttons .account-btn { width:100%; margin:5px 0; }
+
+@media (max-width:760px) {
+  header { min-height:68px; padding:10px 16px; gap:12px; }
+  header > a { font-size:1.18rem; }
+  .menu-btn { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .navigation { position:absolute; top:100%; left:0; right:0; display:none; flex-direction:column; align-items:stretch; gap:4px; padding:12px 16px 16px; background:rgba(0,0,0,.98); border-top:1px solid #333; box-shadow:0 8px 12px rgba(0,0,0,.35); }
+  .navigation.is-open { display:flex; }
+  .navigation > a,.navigation .nav-btn { width:100%; }
+  .navigation .nav-btn { text-align:left; font-size:15px; padding:13px 14px; min-height:46px; }
+  .Home { min-height:auto; padding:20px 12px 35px; }
+  .body { min-height:0; width:100%; padding:10px; margin-bottom:20px; border-radius:16px; align-items:stretch; }
+  .content { width:100%; padding:28px 18px; border-radius:13px; }
+  .small { font-size:13px; }
+  .big { font-size:clamp(2.15rem,11vw,3.4rem); line-height:1.08; }
+  .small-content { font-size:.95rem; line-height:1.65; padding-left:0; margin-bottom:18px; }
+  .small-content br { display:none; }
+  .account-btn,.submit-btn,.account-login-btn { width:100%; min-height:46px; margin:7px 0; padding:12px 14px; font-size:.95rem; }
+  .display-jobs { margin:30px 0 18px; padding:0 4px; }
+  .display-jobs h2 { font-size:clamp(1.75rem,8vw,2.4rem); }
+  .display-jobs p { font-size:.92rem; }
+  .login-form,.grad-acc { width:calc(100% - 24px); margin:32px auto 24px; padding:22px 16px; }
+  .login-title,.grad-title,.big-content { font-size:clamp(2rem,9vw,3rem); line-height:1.12; }
+  .login-content { width:100%; }
+  .buttons { width:100%; }
+  .login-actions { flex-direction:column; align-items:stretch; gap:3px; }
+  .login-actions .submit-btn { width:100%; margin:5px 0; }
+  .name-label,.account-type-option,.form-input { font-size:.95rem; }
+  .form-input { min-height:48px; margin-bottom:16px; }
+  .password-field { margin-bottom:16px; }
+  .account-type-options { gap:10px; }
+  .account-type-option { white-space:normal; }
 }
 
-html {
-    scroll-behavior: smooth;
+@media (max-width:380px) {
+  header { padding-left:12px; padding-right:12px; }
+  header > a { font-size:1.02rem; }
+  .Home { padding-left:8px; padding-right:8px; }
+  .content { padding:23px 14px; }
+  .big { font-size:2rem; }
+  .login-form,.grad-acc { width:calc(100% - 16px); padding:18px 13px; }
+  .login-title,.grad-title,.big-content { font-size:2rem; }
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #000000;
-    min-height: 100vh;
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-img,
-svg {
-    max-width: 100%;
-}
-
-header {
-    width: 100%;
-    min-height: 80px;
-    background: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-a {
-    font-weight: 900;
-    font-size: 1rem;
-    color: #fff;
-    letter-spacing: 1px;
-}
-
-header > a {
-    font-size: 1.8rem;
-    white-space: nowrap;
-}
-
-span {
-    color: chocolate;
-    padding: 3px;
-}
-
-.navigation {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.nav-btn {
-    border: none;
-    background: transparent;
-    padding: 10px 16px;
-    border-radius: 7px;
-    color: #fff;
-    font-size: 15px;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-.nav-btn:hover,
-.nav-btn.active {
-    background: chocolate;
-    color: #ffffff;
-}
-
-.menu-btn {
-    display: none;
-    border: none;
-    background: transparent;
-    font-size: 27px;
-    color: #fff;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.Home {
-    min-height: 75vh;
-    padding: 50px 6%;
-}
-
-.body {
-    min-height: 600px;
-    width: 100%;
-    max-width: 90%;
-    margin: 0 auto 30px;
-    display: flex;
-    align-items: center;
-    padding: 60px;
-    border-radius: 20px;
-    background: linear-gradient(120deg, #000000, #333, #555, #000000);
-}
-
-.content {
-    width: 100%;
-    max-width: 90%;
-    background: #000000;
-    padding: 80px 100px;
-    border-radius: 20px;
-}
-
-.small {
-    color: chocolate;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.big {
-    color: #fff;
-    font-size: 60px;
-    font-weight: bold;
-    line-height: 1.1;
-}
-
-.big span {
-    color: chocolate;
-}
-
-.small-content {
-    color: #666;
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    padding-left: 20px;
-}
-
-.account-btn {
-    background: chocolate;
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.display-jobs {
-    text-align: center;
-    margin: 60px 0 30px;
-}
-
-.display-jobs h2 {
-    color: #999;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.display-jobs p {
-    color: #777;
-}
-
-.products-grid {
-    width: 100%;
-}
-
-.login-form {
-    width: 100%;
-    max-width: 650px;
-    margin: 100px auto 0;
-    background: #000000;
-    padding: 30px 50px;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-
-.login-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: chocolate;
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.submit-btn {
-    background: chocolate;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.login-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.login-actions .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.account-type-options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 18px;
-    margin: 0 0 20px;
-    padding: 0;
-    border: 0;
-}
-
-.account-type-options legend {
-    flex-basis: 100%;
-}
-
-.account-type-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-.account-type-option input {
-    margin: 0;
-    accent-color: chocolate;
-}
-
-.form-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 15px;
-    background: #333;
-    color: #fff;
-    font-size: 16px;
-}
-
-.form-input:focus {
-    outline: 2px solid chocolate;
-    outline-offset: 1px;
-}
-
-.password-field {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.password-field .form-input {
-    padding-right: 44px;
-    margin-bottom: 0;
-}
-
-.password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    display: grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    padding: 4px;
-    border: 0;
-    background: transparent;
-    color: #bbb;
-    cursor: pointer;
-}
-
-.password-toggle:hover,
-.password-toggle:focus-visible {
-    color: #fff;
-}
-
-.password-toggle:focus-visible {
-    outline: 2px solid chocolate;
-    outline-offset: 2px;
-    border-radius: 4px;
-}
-
-.password-toggle svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.8;
-}
-
-.name-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.big-content {
-    color: #fff;
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.account-login-btn {
-    width: 100%;
-    max-width: 100%;
-    background: chocolate;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.grad-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: chocolate;
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.grad-content {
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.grad-acc {
-    width: 100%;
-    max-width: 650px;
-    margin: 100px auto 0;
-    background: #000000;
-    padding: 30px 50px;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-
-/* Tablets and smaller laptops */
-@media (max-width: 1000px) {
-    header {
-        padding: 0 4%;
-    }
-
-    .Home {
-        padding: 40px 4%;
-    }
-
-    .body {
-        max-width: 96%;
-        padding: 40px;
-    }
-
-    .content {
-        max-width: 100%;
-        padding: 60px;
-    }
-
-    .big {
-        font-size: clamp(42px, 6vw, 60px);
-    }
-}
-
-/* Phones */
-@media (max-width: 760px) {
-    body {
-        overflow-x: hidden;
-    }
-
-    header {
-        min-height: 70px;
-        padding: 10px 4%;
-    }
-
-    header > a {
-        font-size: 1.2rem;
-    }
-
-    .menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .navigation {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-        padding: 14px 5%;
-        background: rgba(0, 0, 0, 0.98);
-        border-top: 1px solid #333;
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.35);
-    }
-
-    .navigation.is-open {
-        display: flex;
-    }
-
-    .navigation > a {
-        display: block;
-        width: 100%;
-    }
-
-    .navigation .nav-btn {
-        width: 100%;
-        text-align: left;
-        font-size: 0.95rem;
-        padding: 12px 14px;
-    }
-
-    .Home {
-        min-height: auto;
-        padding: 24px 4%;
-    }
-
-    .body {
-        min-height: 0;
-        max-width: 100%;
-        margin-bottom: 24px;
-        padding: 12px;
-        border-radius: 16px;
-        align-items: stretch;
-    }
-
-    .content {
-        max-width: 100%;
-        padding: 30px 20px;
-        border-radius: 14px;
-    }
-
-    .small {
-        font-size: 14px;
-    }
-
-    .big {
-        font-size: clamp(2.2rem, 11vw, 3.5rem);
-        line-height: 1.08;
-    }
-
-    .small-content {
-        font-size: 0.96rem;
-        line-height: 1.7;
-        padding-left: 0;
-        margin-bottom: 20px;
-    }
-
-    .account-btn,
-    .submit-btn,
-    .account-login-btn {
-        width: 100%;
-        margin: 8px 0;
-        padding: 13px 16px;
-        font-size: 0.95rem;
-    }
-
-    .display-jobs {
-        margin: 35px 0 20px;
-    }
-
-    .display-jobs h2 {
-        font-size: clamp(1.8rem, 8vw, 2.5rem);
-    }
-
-    .login-form,
-    .grad-acc {
-        width: 100%;
-        max-width: 100%;
-        margin-top: 40px;
-        padding: 22px 18px;
-    }
-
-    .login-title,
-    .grad-title,
-    .big-content {
-        font-size: clamp(2rem, 9vw, 3rem);
-        line-height: 1.15;
-    }
-
-    .login-content,
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .buttons a,
-    .buttons .account-btn,
-    .login-actions a,
-    .login-actions .submit-btn {
-        width: 100%;
-    }
-
-    .name-label,
-    .account-type-option,
-    .form-input {
-        font-size: 0.95rem;
-    }
-
-    .account-type-options {
-        gap: 10px;
-    }
-
-    .account-type-option {
-        white-space: normal;
-    }
-
-    .login-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-    }
-
-    .login-actions .submit-btn {
-        width: 100%;
-    }
-
-    .password-field {
-        margin-bottom: 16px;
-    }
-
-    .form-input {
-        min-height: 48px;
-    }
-}
-
-/* Very small phones */
-@media (max-width: 380px) {
-    header > a {
-        font-size: 1.05rem;
-    }
-
-    .content {
-        padding: 24px 16px;
-    }
-
-    .big {
-        font-size: 2.05rem;
-    }
-
-    .login-form,
-    .grad-acc {
-        padding: 18px 14px;
-    }
+@media (min-width:761px) and (max-width:1050px) {
+  header { padding-left:4%; padding-right:4%; }
+  .Home { padding-left:4%; padding-right:4%; }
+  .body { padding:35px; }
+  .content { padding:50px; }
 }

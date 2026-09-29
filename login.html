@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Tracker - Login</title>
+    <title>Jobs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,6 +35,19 @@
             </div>
         </form> 
     </div>
+    <script>
+        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.passwordToggle);
+                const isVisible = input.type === 'text';
+                input.type = isVisible ? 'password' : 'text';
+                button.setAttribute('aria-pressed', String(!isVisible));
+                button.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
+                button.querySelector('.eye-icon').hidden = !isVisible;
+                button.querySelector('.eye-off-icon').hidden = isVisible;
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

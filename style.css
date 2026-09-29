@@ -69,13 +69,18 @@ span{
     font-size: 27px;
 }
 @media (max-width: 760px) {
+    * {
+        max-width: 100%;
+    }
+
     body {
         overflow-x: hidden;
     }
 
     header {
-        padding: 12px 5%;
+        padding: 12px 4%;
         min-height: 70px;
+        width: 100%;
     }
 
     header a {
@@ -127,15 +132,17 @@ span{
     }
 
     .body {
+        width: 100%;
         max-width: 100%;
-        padding: 24px 18px;
+        padding: 18px 14px;
         min-height: auto;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
     }
 
     .content {
+        width: 100%;
         max-width: 100%;
-        padding: 20px 16px;
+        padding: 18px 14px;
         background: rgba(0, 0, 0, 0.88);
     }
 
@@ -145,8 +152,8 @@ span{
     }
 
     .big {
-        font-size: clamp(2.2rem, 9vw, 3.4rem);
-        line-height: 1.15;
+        font-size: clamp(2.2rem, 10vw, 3.3rem);
+        line-height: 1.08;
     }
 
     .small-content {

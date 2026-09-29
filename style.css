@@ -69,13 +69,19 @@ span{
     font-size: 27px;
 }
 @media (max-width: 760px) {
+    body {
+        overflow-x: hidden;
+    }
+
     header {
         padding: 12px 5%;
         min-height: 70px;
     }
+
     header a {
         font-size: 1.2rem;
     }
+
     .navigation {
         position: absolute;
         top: 70px;
@@ -90,19 +96,23 @@ span{
         border-top: 1px solid #333;
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.35);
     }
+
     .navigation.is-open {
         display: flex;
     }
+
     .navigation > a {
         display: block;
         width: 100%;
     }
+
     .navigation .nav-btn {
         width: 100%;
         text-align: left;
         font-size: 0.95rem;
         padding: 12px 14px;
     }
+
     .menu-btn {
         display: inline-flex;
         align-items: center;
@@ -111,33 +121,40 @@ span{
         cursor: pointer;
         font-size: 1.6rem;
     }
+
     .Home {
         padding: 24px 4%;
     }
+
     .body {
         max-width: 100%;
         padding: 24px 18px;
         min-height: auto;
         margin-bottom: 20px;
     }
+
     .content {
         max-width: 100%;
         padding: 20px 16px;
         background: rgba(0, 0, 0, 0.88);
     }
+
     .small {
         font-size: 0.8rem;
         letter-spacing: 0.08em;
     }
+
     .big {
         font-size: clamp(2.2rem, 9vw, 3.4rem);
         line-height: 1.15;
     }
+
     .small-content {
         font-size: 0.96rem;
         line-height: 1.7;
         padding-left: 0;
     }
+
     .account-btn,
     .submit-btn,
     .account-login-btn {
@@ -147,12 +164,15 @@ span{
         padding: 14px 16px;
         font-size: 0.95rem;
     }
+
     .display-jobs {
         margin: 32px 0 20px;
     }
+
     .display-jobs h2 {
         font-size: clamp(1.8rem, 7vw, 2.5rem);
     }
+
     .login-form,
     .grad-acc {
         width: 100%;
@@ -160,22 +180,58 @@ span{
         margin-top: 40px;
         padding: 22px 18px;
     }
+
     .login-title,
-    .grad-title {
+    .grad-title,
+    .big-content {
         font-size: clamp(2rem, 8vw, 3rem);
     }
+
+    .login-content,
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .buttons a,
+    .buttons .account-btn,
+    .login-actions a,
+    .login-actions .submit-btn {
+        width: 100%;
+    }
+
     .name-label,
     .account-type-option,
     .form-input {
         font-size: 0.95rem;
     }
+
     .account-type-options {
         gap: 10px;
     }
+
     .login-actions {
         flex-direction: column;
+        align-items: stretch;
     }
+
     .login-actions .submit-btn {
+        width: 100%;
+    }
+
+    .password-field {
+        margin-bottom: 16px;
+    }
+
+    .form-input {
+        min-height: 48px;
+    }
+
+    .account-login-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
     }
 }
